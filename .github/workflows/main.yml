@@ -1,0 +1,15 @@
+name: Main Workflow
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+
+jobs:
+  lint:
+    uses: ./.github/workflows/lint.yml
+
+  build:
+    needs: lint  # Ensures 'lint' must pass before 'build' runs
+    uses: ./.github/workflows/build.yml
