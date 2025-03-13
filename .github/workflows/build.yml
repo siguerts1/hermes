@@ -8,7 +8,6 @@ on:
 
 jobs:
   build:
-    needs: lint  # This ensures linting must pass first
     runs-on: ubuntu-latest
     steps:
       - name: Checkout code
@@ -20,4 +19,4 @@ jobs:
           go-version: 1.23
 
       - name: Build application
-        run: go build -o myapp main.go
+        run: go build -o hermers-api cmd/main.go
