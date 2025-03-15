@@ -23,7 +23,7 @@ jobs:
           go mod tidy      # Ensure go.mod and go.sum are correct
           go mod download  # Download all dependencies
           go mod vendor    # Ensure all dependencies are vendored (optional)
-          
+
       - name: Install golangci-lint
         run: |
           curl -sSfL https://raw.githubusercontent.com/golangci/golangci-lint/master/install.sh | sh -s -- -b $(go env GOPATH)/bin v1.54.2
@@ -32,7 +32,7 @@ jobs:
       - name: Run Linter
         run: |
           export GOFLAGS="-mod=mod"
-          golangci-lint run ./cmd ./internal/api/v1/handlers/ ./services/thirdparty/
+          golangci-lint run ./cmd ./internal/api/v1/handlers/ ./internal/services/thirdparty/
 
   build:
     needs: lint
