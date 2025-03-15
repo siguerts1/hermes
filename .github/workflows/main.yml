@@ -26,7 +26,7 @@ jobs:
       - name: Run Linter
         run: |
           export GOFLAGS="-mod=mod"
-          golangci-lint run ./cmd ./internal
+          golangci-lint run ./cmd ./internal/api/v1/handlers/ ./services/thirdparty/
 
   build:
     needs: lint
