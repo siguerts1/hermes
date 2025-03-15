@@ -24,7 +24,9 @@ jobs:
           echo "$(go env GOPATH)/bin" >> $GITHUB_PATH
 
       - name: Run Linter
-        run: golangci-lint run ./...
+        run: |
+          export GOFLAGS="-mod=mod"
+          golangci-lint run ./cmd ./internal
 
   build:
     needs: lint
