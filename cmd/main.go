@@ -22,11 +22,18 @@ func main() {
 
 	// Register GitHub handler
 	githubHandler := handlers.NewGitHubHandler()
+	geoIPHandler := handlers.NewGeoIPHandler()
 	e.GET("/github/repos", githubHandler.GetRepositories)
+	e.GET("/geo/ip", geoIPHandler.GetGeoIP)
 
 	// Health check
 	e.GET("/health", func(c echo.Context) error {
 		return c.JSON(http.StatusOK, map[string]string{"status": "ok"})
+	})
+
+	// Custom check
+	e.GET("/checker", func(c echo.Context) error {
+		return c.JSON(http.StatusOK, map[string]string{"whatup?": "GOOD"})
 	})
 
 	log.Printf("Starting server on port %s...\n", port)
