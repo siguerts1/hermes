@@ -18,11 +18,12 @@ jobs:
         with:
           go-version: 1.23
       
-      - name: Verify and Install Dependencies
+      - name: Reset Go Modules
         run: |
-          go mod tidy      # Ensure go.mod and go.sum are correct
-          go mod download  # Download all dependencies
-          go mod vendor    # Ensure all dependencies are vendored (optional)
+          rm -rf go.sum go.mod # Completely remove any broken files
+          go mod init hermes  # Reinitialize Go modules (change "hermes" to your module name)
+          go mod tidy         # Reinstall all dependencies
+          go mod download     # Ensure all packages are downloaded
 
       - name: Install golangci-lint
         run: |
