@@ -8,6 +8,8 @@ import (
 	"time"
 )
 
+const url = "https://api.github.com"
+
 // GitHubReposInfo represents the minimal repository information we need
 type GitHubReposInfo struct {
 	ID         int64  `json:"id"`
@@ -24,7 +26,7 @@ type GitHubAPI struct {
 
 func NewGitHubAPI() *GitHubAPI {
 	return &GitHubAPI{
-		BaseURL: "https://api.github.com",
+		BaseURL: url,
 		Client: &http.Client{
 			Timeout: 10 * time.Second,
 		},
