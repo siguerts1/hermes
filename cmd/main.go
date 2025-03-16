@@ -22,9 +22,7 @@ func main() {
 
 	// Register GitHub handler
 	githubHandler := handlers.NewGitHubHandler()
-	geoIPHandler := handlers.NewGeoIPHandler()
 	e.GET("/github/repos", githubHandler.GetRepositories)
-	e.GET("/geo/ip", geoIPHandler.GetGeoIP)
 
 	// Health check
 	e.GET("/health", func(c echo.Context) error {
